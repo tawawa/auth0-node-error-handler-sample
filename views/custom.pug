@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= error
+  pre #{error_description}
+  script.
+    var auth0 = new auth0.WebAuth({
+      domain: "{TENANT}.auth0.com",
+      clientID: "{CLIENT_ID}"
+    });
+    window.setTimeout(function () {
+      debugger;
+      auth0.logout({clientID: '{CLIENT_ID}', returnTo: 'http://localhost:3000/logout'})
+    }, 5000);
