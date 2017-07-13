@@ -37,10 +37,14 @@ router.get('/callback', passport.authenticate('auth0', { failureRedirect: '/cust
 router.get('/custom', function(req, res) {
   var error = req.flash("error"); 
   var error_description = req.flash("error_description"); 
+  var AUTH0_DOMAIN = process.env.AUTH0_DOMAIN;
+  var AUTH0_CLIENT_ID = process.env.AUTH0_CLIENT_ID;
   req.logout();
   res.render('custom', {
     error: error[0], 
     error_description: error_description[0], 
+    AUTH0_CLIENT_ID,
+    AUTH0_DOMAIN
   });
 });
 
